@@ -19,16 +19,19 @@ public class BookDetailsController {
 	@Autowired
 	BookDetailsRepository bookrepo;
 	
-	 @GetMapping("/all")
-	    public List<BookDetails> getAll() {
-		 List<BookDetails> bookList=new ArrayList<>();
-			
-			this.bookrepo.findAll().forEach(eachObject -> {
-				bookList.add(eachObject);
-			
-			});	
-			
-			return bookList;
-	    }
-	 
+	@GetMapping(value="/getAll")
+	public List<BookDetails> getAll(){
+		
+		List<BookDetails> bookList=new ArrayList<>();
+		
+		this.bookrepo.findAll().forEach(eachObject -> {
+			bookList.add(eachObject);
+		
+		});	
+		
+		return bookList;
+		
+		
+		
+	}
 }
