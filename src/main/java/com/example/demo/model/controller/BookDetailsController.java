@@ -5,33 +5,46 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.model.BookDetails;
-import com.example.demo.repository.BookDetailsRepository;
+import com.example.demo.services.BookDetailService;
 
 @RestController
-
 
 public class BookDetailsController {
 	
 	@Autowired
-	BookDetailsRepository bookrepo;
+	private BookDetailService bookService;
 	
-	@GetMapping(value="/getAll")
+	
+	@PostMapping(value="/books",produces="application/json",consumes="application/json")
+	public BookDetails add(BookDetails entity) {
+		return this.bookService.save(entity);
+	}
+	
+	@GetMapping(value="/getAllBooks")
 	public List<BookDetails> getAll(){
 		
 		List<BookDetails> bookList=new ArrayList<>();
 		
-		this.bookrepo.findAll().forEach(eachObject -> {
+		this.bookService.findAll().forEach(eachObject -> {
 			bookList.add(eachObject);
 		
 		});	
 		
 		return bookList;
 		
-		
-		
 	}
+	
+	@PostMapping(value= "/deleteBook" )
+	public void deleteBook(@RequestBody BookDetails entity)
+	{
+	  this.bookService.deleteBookById(entity);
+	}
+
+	
+	
 }
