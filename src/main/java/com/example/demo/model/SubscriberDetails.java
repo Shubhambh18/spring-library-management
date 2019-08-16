@@ -23,6 +23,9 @@ public class SubscriberDetails {
 	@Id
 	private long subscriberID;
 	private String subscriberName;	
+	private String issueDate;
+	private String returnDate;
+	private long penalty;
 	@OneToOne(cascade = CascadeType.PERSIST)
 	@JoinColumn(name = "book_id")
 	private BookDetails bookDetails;

@@ -20,10 +20,11 @@ public class BookDetailsController {
 	private BookDetailService bookService;
 	
 	
-	@PostMapping(value="/books",produces="application/json",consumes="application/json")
+	@PostMapping(value="/addBooks",produces="application/json",consumes="application/json")
 	public BookDetails add(BookDetails entity) {
 		return this.bookService.save(entity);
 	}
+	
 	
 	@GetMapping(value="/getAllBooks")
 	public List<BookDetails> getAll(){

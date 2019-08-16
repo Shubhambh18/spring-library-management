@@ -2,6 +2,7 @@ package com.example.demo.services;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -26,11 +27,16 @@ public class SubscriberDetailsService {
 		return subsRepo.findAll();
 	}
 	
-//	public void deleteBookById(SubscriberDetails entity)
-//	{
-//
-//		subsRepo.deleteById(entity.getSubscriberID());
-//	}
+	public void deleteBookById(SubscriberDetails entity)
+	{
+
+		subsRepo.deleteById(entity.getSubscriberID());
+	}
+	public Optional<SubscriberDetails> showDetails(long id)
+	{
+		
+		return subsRepo.findById(id);
+	}
 	
 	
 
